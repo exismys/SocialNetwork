@@ -6,8 +6,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 Class UserController extends Controller {
+
     public function postSignUp(Request $request) {
-        
+
         $this->validate($request, [
             'email' => 'required|email|unique:users',
             'first_name' => 'required|max:120',
@@ -37,8 +38,10 @@ Class UserController extends Controller {
         return redirect()->back();
     }
 
-    public function getDashboard() {
-        return view('dashboard');
+    public function getLogout()
+    {
+        Auth::logout();
+        return redirect()->route('home');
     }
 }
 

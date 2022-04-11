@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +22,13 @@ Route::get('/', function () {
 Route::controller(UserController::class)->group(function () {
     Route::post('/signup', 'postSignUp')->name('signup');
     Route::post('/signin', 'postSignIn')->name('signin');
-    Route::get('/dashboard', 'getDashboard')->name('dashboard');
+    Route::get('/logout', 'getLogout')->name('logout');
+    
+});
+
+Route::controller(PostController::class)->group(function() {
+    Route::post('/createPost', 'postCreatePost')->name('post.create');
+    Route::get('/dashboard', 'getDashboard')->name('dashboard')->middleware('auth');
+    Route::get('/delete-post/{post-id}', 'getDeletePost')->name('post.delete')->middleware('auth');
+    Route::post('/edit', 'postEditPost')->name('edit');
 });
