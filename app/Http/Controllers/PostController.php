@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
+use Illuminate\Support\Facades\Auth;
+
 Class PostController extends Controller {
 
     public function postCreatePost(Request $request)
@@ -25,9 +27,9 @@ Class PostController extends Controller {
         return view('dashboard', ['posts' => $posts]);
     }
 
-    public function getDeletePost($post_id)
+    public function getDeletePost($id)
     {
-        $post = Post::where('id', $post_id)->first();
+        $post = Post::where('id', $id)->first();
         if (Auth::user() != $post->user) {
             return redirect()->back();
         }

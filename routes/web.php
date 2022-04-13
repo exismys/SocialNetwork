@@ -32,6 +32,6 @@ Route::controller(UserController::class)->group(function () {
 Route::controller(PostController::class)->group(function() {
     Route::post('/createPost', 'postCreatePost')->name('post.create');
     Route::get('/dashboard', 'getDashboard')->name('dashboard')->middleware('auth');
-    Route::get('/delete-post/{post-id}', 'getDeletePost')->name('post.delete')->middleware('auth');
+    Route::get('/delete-post/{id}', 'getDeletePost')->name('post.delete')->middleware('auth');
     Route::post('/edit', 'postEditPost')->name('edit');
 });
