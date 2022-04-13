@@ -23,6 +23,9 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/signup', 'postSignUp')->name('signup');
     Route::post('/signin', 'postSignIn')->name('signin');
     Route::get('/logout', 'getLogout')->name('logout');
+    Route::get('/account', 'getAccount')->name('account');
+    Route::post('/updateaccount', 'postSaveAccount')->name('account.save');
+    Route::get('/userimage/{filename}', 'getUserImage')->name('account.image');
     
 });
 
